@@ -1,2 +1,0 @@
-# EasyMove
-Transportation Booking System
