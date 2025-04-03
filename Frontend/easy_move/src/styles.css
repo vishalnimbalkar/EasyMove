@@ -82,4 +82,13 @@ label{
     color: #5ba2cf !important; 
     opacity: 0.5;  
  } */
+
+ .toast-success {
+    background-color: #28a745 !important;
+  }
+  
+  .toast-error {
+    background-color: #dc3545 !important;
+  }
+  
   

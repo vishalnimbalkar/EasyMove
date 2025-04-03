@@ -9,7 +9,7 @@ export class ProfileService {
 
   constructor(private http:HttpClient) { }
 
-  baseUrl:string='http://localhost:5000/'
+  baseUrl:string='http://localhost:3000/auth/'
 
   //customer signup
   customerSignUp(payload: any): Observable<any> {
@@ -22,7 +22,7 @@ export class ProfileService {
   }
   
   //login customer/driver/admin
-  login(payload:any){
+  login(payload:any): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'login',payload);
   }
 

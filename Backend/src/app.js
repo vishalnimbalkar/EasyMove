@@ -1,16 +1,25 @@
 import express, { json } from "express";
-import { sync } from "./config/db.js";
-import User from "./models/User.js";
+import { checkConnection } from './config/db.js';
+import authRoutes from "./routes/authRoutes.js";
+import cors from 'cors';
 
 const app = express();
-app.use(json());
 
-// Sync database
-sync({ alter: true }) // Set `force: true` to recreate the table (for dev only)
-  .then(() => console.log("Database & tables synced"))
-  .catch(err => console.error("Error syncing database:", err));
+app.use(cors({
+  origin: "http://localhost:4200", // Allow requests from Angular app
+  methods: "GET,POST,PUT,DELETE,OPTIONS", // Allowed methods
+  allowedHeaders: "Content-Type,Authorization" // Allowed headers
+}))
+app.use(express.json()); 
+app.use('/auth', authRoutes);
 
-app.listen(3000, () => console.log("Server running on port 3000"));
-const userRoutes = require("./routes/userRoutes");
+app.listen(3000, async() => {
+  console.log('Server running on port 3000');
+  try {
+    await checkConnection();
+  } catch (error) {
+    console.log("Failed to initialize the database",error);
+    
+  }
+});
 
-app.use("/api", userRoutes);

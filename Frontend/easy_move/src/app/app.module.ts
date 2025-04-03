@@ -10,7 +10,6 @@ import { LoginComponent } from './login/login.component';
 import { CustomerSignupComponent } from './customer-signup/customer-signup.component';
 import { HeaderComponent } from './header/header.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

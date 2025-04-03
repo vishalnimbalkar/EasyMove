@@ -1,17 +1,27 @@
-import { Sequelize } from "sequelize";
+//Add your database
+import mysql2 from 'mysql2/promise';
+import dotenv from "dotenv";
 
-const sequelize = new Sequelize("easy_movedb", "root", "Vishal@123", {
-  host: "localhost",
-  dialect: "mysql",
+dotenv.config();
+
+const pool=mysql2.createPool({
+    host:process.env.DB_HOST,
+    user:process.env.DB_USER,
+    password:process.env.DB_PASS,
+    database:process.env.DB_NAME,
 });
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Database connected...");
-  } catch (error) {
-    console.error("Database connection error:", error);
-  }
-})();
+const checkConnection=async()=>{
+    try {
+        const connection=await pool.getConnection();
+        console.log("Database Connection Successfull!!");
+        connection.release();
+        
+    } catch (error) {
+        console.log("Error connecting to database!");
+        throw error;
+        
+    }
+}
 
-export default sequelize;
+export {pool,checkConnection};
