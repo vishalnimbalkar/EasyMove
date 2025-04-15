@@ -7,14 +7,14 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  constructor(private router: Router,
-    private route: ActivatedRoute,) { }
-
-  ngOnInit(): void {
-    // this.router.navigate(['profile'])
-  }
-  onLogout(){
-    this.router.navigate(['login'])
-    sessionStorage.removeItem('email')
-  }
+ constructor(private router: Router,
+     private route: ActivatedRoute,) { }
+ 
+   ngOnInit(): void {
+     // this.router.navigate(['profile'])
+   }
+   onLogout(){
+     this.router.navigate(['login'])
+     sessionStorage.removeItem('email')
+   }
 }

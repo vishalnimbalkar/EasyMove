@@ -1,0 +1,41 @@
+
+
+
+<div class="booking">
+    <div class="title text-center m-3">
+        <h1>Booking</h1>
+    </div>
+    <div class="form">
+        <form [formGroup]="bookingForm">
+            <div class="form-group">
+                <label for="pickup_location">Pickup Location</label>
+                <input type="text" id="pickup_location" 
+                    class="form-control" placeholder="Enter Pickup Location" formControlName="pickup_location" required>
+            </div>
+            <div class="form-group">
+                <label for="dropoff_location">Drop Location</label>
+                <input type="text" id="dropoff_location" 
+                    class="form-control" placeholder="Enter Drop Location" formControlName="dropoff_location" required>
+            </div> 
+            <div class="form-group">
+                <label for="pickup_date">Pickup Date</label>
+                <input type="date" id="pickup_date" 
+                    class="form-control" placeholder="Enter Pickup Date" formControlName="pickup_date" required>
+            </div>
+            <div class="form-group">
+                <label for="distance">Distance(KM)</label>
+                <input type="number" id="distance" 
+                    class="form-control" placeholder="Enter Distance Between Pickup and Drop Location" formControlName="distance" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Laguage Weight(KG)</label>
+                <input type="number" id="weight" 
+                    class="form-control" placeholder="Enter Laguage Weight in KG" formControlName="weight" required>
+            </div>
+            <div class="form-group make-center">
+                <button class="signup" style="height: 40px;" (click)="onBook()">Book</button>
+            </div>
+        </form>
+    </div>
+</div>
+  

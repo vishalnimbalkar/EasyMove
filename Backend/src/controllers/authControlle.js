@@ -1,5 +1,5 @@
 import userModel from "../models/userModel.js";
-import { loginUser, registerUser } from "../services/authServices.js";
+import { getUser, loginUser, registerUser } from "../services/authServices.js";
 
 export const register = async (req, res) => {
   const { name, email, password, phone, role } = req.body;
@@ -33,3 +33,17 @@ export const login = async (req, res) => {
     return {success : false , message : 'Failed to login'}
   }
 };
+
+export const getUserDetail = async (req, res)=>{
+  const email = req.params.email
+  try {
+    const response = await getUser(email);
+    if (response.success) {
+      res.status(200).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    return {success : false , message : 'Failed'}
+  }
+}

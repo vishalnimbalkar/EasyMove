@@ -26,4 +26,7 @@ export class ProfileService {
     return this.http.post<any>(this.baseUrl + 'login',payload);
   }
 
+  getUser(email:any){
+    return this.http.get(this.baseUrl+"getUser/"+email)
+  }
 }
