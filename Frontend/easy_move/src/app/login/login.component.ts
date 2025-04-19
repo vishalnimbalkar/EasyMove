@@ -47,6 +47,7 @@ export class LoginComponent {
         }else if(response.role === 'admin'){
             this.router.navigate(['/admin-dashboard']);
         }
+        sessionStorage.setItem('user_id',response.user.id);
       } else {
         this.router.navigate(['/login']);
       }
