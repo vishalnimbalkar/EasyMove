@@ -2,6 +2,7 @@ import express, { json } from "express";
 import { checkConnection } from './config/db.js';
 import authRoutes from "./routes/authRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 import cors from 'cors';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors({
 app.use(express.json()); 
 app.use('/auth', authRoutes); 
 app.use('/booking', bookingRoutes);
+app.use('/payment', paymentRoutes);
 
 app.listen(3000, async() => {
   console.log('Server running on port 3000');

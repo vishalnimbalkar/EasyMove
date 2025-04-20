@@ -22,3 +22,12 @@ export const booking = async (bookingData) => {
   }
 };
 
+export const getBookingDetails = async (customer_id)=>{
+  try {
+    const query = `select * from bookings where customer_id = ?`;
+    const [rows] = await pool.query(query, customer_id);
+    return { success: true, message: "successful", bookings: rows};
+  } catch (error) {
+    return { success: false, message: "Failed", error: error.message };
+  }
+}

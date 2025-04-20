@@ -13,4 +13,8 @@ export class BookingService {
   booking(payload: any): Observable<any> {
       return this.http.post<any>(this.baseUrl + 'request', payload);
     }
+
+    getBookingDetails(customer_id: number): Observable<any> {
+      return this.http.get<any>(this.baseUrl + 'getDetails/'+customer_id);
+    }
 }

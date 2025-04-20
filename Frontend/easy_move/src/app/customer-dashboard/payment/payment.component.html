@@ -1,38 +1,37 @@
-<div class="pendingFarmers">
+<div class="paymentDetails">
     <div class="title ms-4">
         <h3>Payment Details</h3>
         <div class="searchbar">
             <input type="search" placeholder="Serch here" style="width: 350px; border-radius: 5px;">
-            <div class="actions">
-                <!-- <button class="action" (click)="onActive()">ACTIVE</button>
-                <button class="action" (click)="onInActive()">INACTIVE</button>
-                <button class="action" (click)="onDelete()">DELETE</button> -->
-            </div>
-                <!-- <div class="all">
-                    <label for="all">ALL</label>&nbsp;&nbsp;
-                    <input type="checkbox" id="all" class="large" [value]="-1" [(ngModel)]="selectAll"
-                    (change)="onFarmer($event)">
-                </div> -->
         </div>
     </div>
-    <div class="farmers row">
-        <div class="pending col-md-3" >
-            <div class="img">
-                <i class="bi bi-person-circle"></i>
-            </div>
-            <div class="info">
-                <!-- <h3>{{farmer.name}}({{farmer.id}})</h3>
-                <h6>{{farmer.email}}</h6>
-                <h6>{{farmer.m_no}}</h6> -->
-            </div>
-            <div class="checkBox">
-                <!-- <input type="checkbox" class="large" [checked]="farmer.isActive" [value]="farmer.id"
-                (change)="onFarmer($event)"> -->
-            </div>
-            <div class="status">
-                <!-- <span [ngClass]="{'active':farmer.is_active}" *ngIf="farmer.is_active">ACTIVE</span>
-                <span [ngClass]="{'inactive':!farmer.is_active}" *ngIf="!farmer.is_active">INACTIVE</span> -->
-            </div>
-        </div>
+    <div class="payment">
+        <table class="table table-hover"  style="color: black !important;">
+            <thead class="text-center">
+              <tr>
+                <th colspan="2">Transaction Id</th>
+                <th colspan="2">Payment Status</th>
+                <th>Payment Method</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor = 'let payment of paymentDetails' style="height: 50px;">
+                    <td colspan="2"> {{payment.transaction_id}}</td>
+                    <td colspan="2">{{payment.payment_status}}</td>
+                    <td>{{payment.payment_method}}</td>
+                    <td>{{ payment.amount | currency:'INR':'symbol' }}</td>
+                </tr>
+            </tbody>
+          </table>
     </div>
 </div>
+<!-- {
+    "id": 1,
+    "booking_id": 9,
+    "amount": "250.00",
+    "payment_method": "UPI",
+    "payment_status": "pending",
+    "transaction_id": "dghr3434lkjg",
+    "created_at": "2025-04-20T18:43:48.000Z"
+} -->

@@ -1,38 +1,48 @@
-<div class="pendingFarmers">
+<div class="bookingDetails">
     <div class="title ms-4">
         <h3>Booking Details</h3>
         <div class="searchbar">
             <input type="search" placeholder="Serch here" style="width: 350px; border-radius: 5px;">
-            <div class="actions">
-                <!-- <button class="action" (click)="onActive()">ACTIVE</button>
-                <button class="action" (click)="onInActive()">INACTIVE</button>
-                <button class="action" (click)="onDelete()">DELETE</button> -->
-            </div>
-                <!-- <div class="all">
-                    <label for="all">ALL</label>&nbsp;&nbsp;
-                    <input type="checkbox" id="all" class="large" [value]="-1" [(ngModel)]="selectAll"
-                    (change)="onFarmer($event)">
-                </div> -->
         </div>
     </div>
-    <div class="farmers row">
-        <div class="pending col-md-3" >
-            <div class="img">
-                <i class="bi bi-person-circle"></i>
-            </div>
-            <div class="info">
-                <!-- <h3>{{farmer.name}}({{farmer.id}})</h3>
-                <h6>{{farmer.email}}</h6>
-                <h6>{{farmer.m_no}}</h6> -->
-            </div>
-            <div class="checkBox">
-                <!-- <input type="checkbox" class="large" [checked]="farmer.isActive" [value]="farmer.id"
-                (change)="onFarmer($event)"> -->
-            </div>
-            <div class="status">
-                <!-- <span [ngClass]="{'active':farmer.is_active}" *ngIf="farmer.is_active">ACTIVE</span>
-                <span [ngClass]="{'inactive':!farmer.is_active}" *ngIf="!farmer.is_active">INACTIVE</span> -->
-            </div>
-        </div>
+    <div class="booking">
+        <table class="table table-hover"  style="color: black !important;">
+            <thead class="text-center">
+              <tr>
+                <th colspan="2">Pickup Location</th>
+                <th colspan="2">Dropoff Location</th>
+                <th>Pickup Date</th>
+                <th>Fare</th>
+                <th>Booking Status</th>
+                <th>Payment Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor = 'let booking of bookings' style="height: 50px;">
+                    <td colspan="2"> {{booking.pickup_location}}</td>
+                    <td colspan="2">{{booking.dropoff_location}}</td>
+                    <td>{{booking.pickup_date | date:'dd/MM/yyyy'}}</td>
+                    <td>{{ booking.fare | currency:'INR':'symbol' }}</td>
+                    <td>{{booking.booking_status}}</td>
+                    <td>{{booking.payment_status}}</td>
+
+                    <td class="make-center"  style="height: 50px;"> <button class="btn btn-danger p-1" *ngIf="booking.booking_status === 'pending' || booking.booking_status === 'cancelled'">Cancel</button></td>
+                </tr>
+            </tbody>
+          </table>
     </div>
 </div>
+<!-- // {
+    //   "id": 17,
+    //   "customer_id": 1,
+    //   "driver_id": null,
+    //   "pickup_location": "d",
+    //   "dropoff_location": "d",
+    //   "booking_status": "pending",
+    //   "fare": "620.00",
+    //   "payment_status": "pending",
+    //   "created_at": "2025-04-19T18:52:03.000Z",
+    //   "pickup_date": "2025-04-25T18:30:00.000Z",
+    //   "weight": 2000
+    // }, -->

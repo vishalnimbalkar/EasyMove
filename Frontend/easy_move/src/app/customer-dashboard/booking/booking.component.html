@@ -32,6 +32,7 @@
                 <input type="number" id="weight" 
                     class="form-control" placeholder="Enter Laguage Weight in KG" formControlName="weight" required>
             </div>
+            <p class="text-center">Estimated Fare {{ fare | currency:'INR':'symbol':'1.0-0' }}</p>
             <div class="form-group make-center">
                 <button class="signup" style="height: 40px;" (click)="onBook()">Book</button>
             </div>
