@@ -2,41 +2,68 @@
 
 
 <div class="booking">
-    <div class="title text-center m-3">
-        <h1>Booking</h1>
-    </div>
+    <!-- <div class="title text-center m-3">
+        <h3>Booking</h3>
+    </div> -->
     <div class="form">
-        <form [formGroup]="bookingForm">
+        <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
             <div class="form-group">
                 <label for="pickup_location">Pickup Location</label>
-                <input type="text" id="pickup_location" 
-                    class="form-control" placeholder="Enter Pickup Location" formControlName="pickup_location" required>
+                <input type="text" id="pickup_location"
+                    class="form-control" placeholder="Enter Pickup Location" formControlName="pickup_location" required
+                    [ngClass]="{'error':(bookingForm.controls['pickup_location'].touched || bookingForm.controls['pickup_location'].dirty) && (bookingForm.controls['pickup_location'].hasError('required'))}">
             </div>
             <div class="form-group">
                 <label for="dropoff_location">Drop Location</label>
                 <input type="text" id="dropoff_location" 
-                    class="form-control" placeholder="Enter Drop Location" formControlName="dropoff_location" required>
+                    class="form-control" placeholder="Enter Drop Location" formControlName="dropoff_location" required
+                    [ngClass]="{'error':(bookingForm.controls['dropoff_location'].touched || bookingForm.controls['dropoff_location'].dirty) && (bookingForm.controls['dropoff_location'].hasError('required'))}">
             </div> 
             <div class="form-group">
                 <label for="pickup_date">Pickup Date</label>
                 <input type="date" id="pickup_date" 
-                    class="form-control" placeholder="Enter Pickup Date" formControlName="pickup_date" required>
+                    class="form-control" placeholder="Enter Pickup Date" formControlName="pickup_date" required
+                    [ngClass]="{'error':(bookingForm.controls['pickup_date'].touched || bookingForm.controls['pickup_date'].dirty) && (bookingForm.controls['pickup_date'].hasError('required'))}">
             </div>
             <div class="form-group">
-                <label for="distance">Distance(KM)</label>
-                <input type="number" id="distance" 
-                    class="form-control" placeholder="Enter Distance Between Pickup and Drop Location" formControlName="distance" required>
+                <label for="distance">Distance(Minimum 1KM)</label>
+                <input type="number" id="distance" min="1"
+                    class="form-control" placeholder="Enter Distance Between Pickup and Drop Location" formControlName="distance" required [ngClass]="{'error':(bookingForm.controls['distance'].touched || bookingForm.controls['distance'].dirty) && (bookingForm.controls['distance'].hasError('required'))  || (bookingForm.controls['distance'].hasError('min'))}">
             </div>
             <div class="form-group">
-                <label for="weight">Laguage Weight(KG)</label>
-                <input type="number" id="weight" 
-                    class="form-control" placeholder="Enter Laguage Weight in KG" formControlName="weight" required>
+                <label for="weight">Laguage Weight(Minimum 100KG)</label>
+                <input type="number" id="weight" min="100"
+                    class="form-control" placeholder="Enter Laguage Weight in KG" formControlName="weight" required
+                    [ngClass]="{'error':(bookingForm.controls['weight'].touched || bookingForm.controls['weight'].dirty) && (bookingForm.controls['weight'].hasError('required')) || (bookingForm.controls['weight'].hasError('min'))}">
             </div>
-            <p class="text-center">Estimated Fare {{ fare | currency:'INR':'symbol':'1.0-0' }}</p>
+            <!-- <p class="text-center">Estimated Fare {{ fare | currency:'INR':'symbol':'1.0-0' }}</p> -->
             <div class="form-group make-center">
-                <button class="signup" style="height: 40px;" (click)="onBook()">Book</button>
+                <button class="signup" style="height: 40px;">Book</button>
             </div>
         </form>
     </div>
 </div>
+
+  <!-- Payment Modal -->
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel">Payment Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body text-center">
+            <p><strong>Amount to Pay:</strong> ₹{{ fare }}</p>
+        </div>
+  
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success p-1" (click)="payNow()">Pay Now</button>
+          <button type="button" class="btn btn-secondary p-1" data-bs-dismiss="modal">Cancel</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
   

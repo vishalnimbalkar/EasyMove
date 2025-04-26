@@ -16,12 +16,13 @@ export class PaymentComponent {
   ngOnInit(): void {
     this.paymentService.getPaymentDetails(this.customer_id).subscribe((response: any) => {
       if (response.success) {
-        this.paymentDetails = response.payments;
+        this.paymentDetails = response.payments.sort((a: any, b: any) => {
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        });
         console.log(response);
       } else {
         console.log(response);
       }
     });
   }
-
 }

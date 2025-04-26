@@ -17,4 +17,8 @@ export class BookingService {
     getBookingDetails(customer_id: number): Observable<any> {
       return this.http.get<any>(this.baseUrl + 'getDetails/'+customer_id);
     }
+
+    cancelBooking(booking_id:number): Observable<any> {
+      return this.http.delete<any>(this.baseUrl + 'getDetails/'+booking_id);
+    }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BookingService } from 'src/app/services/booking.service';
+declare var window: any;
 
 @Component({
   selector: 'app-booking-details',
@@ -15,13 +16,35 @@ export class BookingDetailsComponent {
       .getBookingDetails(this.customer_id)
       .subscribe((response: any) => {
         if (response.success) {
-          this.bookings = response.bookings;
+          this.bookings =response.bookings.sort((a: any, b: any) => {
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+          });
           console.log(response);
         } else {
           console.log(response);
         }
       });
   }
+  bookingId!:number;
+  onCancel(booking_id:number){
+    const modal = new window.bootstrap.Modal(document.getElementById('cancelModal'));
+    modal.show();
+    this.bookingId = booking_id;
+  }
+  onYes(){
+    if(this.bookingId!==undefined){
+      this.cancelBooking(this.bookingId)
+    }
+  }
+  cancelBooking(booking_id: number) {
+      this.bookingService.cancelBooking(booking_id).subscribe((response: any) => {
+        if (response.success) {
+          this.bookings = this.bookings.filter((b:any) => b.booking_id !== booking_id);
+          const modal = new window.bootstrap.Modal(document.getElementById('cancelModal'));
+    modal.hide();
+        }
+      });
+    }
 }
 // {
 //   "id": 17,

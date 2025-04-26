@@ -38,6 +38,9 @@ export class LoginComponent {
     this.profileService.login(formData).subscribe((response: any) => {
       if (response.success && response !== null) {
         sessionStorage.setItem('email', response.user.email);
+        sessionStorage.setItem('user_id',response.user.id);
+        sessionStorage.setItem('name',response.user.name);
+        sessionStorage.setItem('phone',response.user.phone);
         if(response.role === 'user'){
           if (response.user.role === 'customer') {
             this.router.navigate(['/customer-dashboard']);
@@ -47,7 +50,6 @@ export class LoginComponent {
         }else if(response.role === 'admin'){
             this.router.navigate(['/admin-dashboard']);
         }
-        sessionStorage.setItem('user_id',response.user.id);
       } else {
         this.router.navigate(['/login']);
       }

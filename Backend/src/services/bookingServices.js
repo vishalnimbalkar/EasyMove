@@ -2,7 +2,8 @@ import { pool } from "../config/db.js";
 
 export const booking = async (bookingData) => {
   try {
-    const query = `insert into bookings (customer_id, pickup_location, dropoff_location, pickup_date, weight, fare) values (?,?,?,?,?,?)`;
+    const query = `insert into bookings (customer_id, pickup_location, dropoff_location, pickup_date, weight, fare,payment_status) values (?,?,?,?,?,?,?)`;
+    const status = 'paid' 
     const values = [
       bookingData.customer_id,
       bookingData.pickup_location,
@@ -10,12 +11,16 @@ export const booking = async (bookingData) => {
       bookingData.pickup_date,
       bookingData.weight,
       bookingData.fare,
+      status
     ];
-    console.log(values);
-    const res = await pool.query(query, values);
-    console.log(res);
-    
-    return { success: true, message: "Booking successfully" };
+    const [result] = await pool.query(query, values);
+    console.log(result);
+
+    return { 
+      success: true, 
+      message: "Booking successfully",
+      booking_id: result.insertId 
+    };
   } catch (error) {
     console.error("Booking Error:", error);
     return { success: false, message: "Failed to Booking" };
