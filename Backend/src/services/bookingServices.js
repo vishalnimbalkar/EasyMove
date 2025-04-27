@@ -36,3 +36,29 @@ export const getBookingDetails = async (customer_id)=>{
     return { success: false, message: "Failed", error: error.message };
   }
 }
+
+export const cancelBooking = async (booking_id) => {
+  try {
+    const query = `update bookings set booking_status = 'cancelled' WHERE id = ?`;
+    const [result] = await pool.query(query, [booking_id]);
+
+    if (result.affectedRows === 0) {
+      return { success: false, message: "Booking not found" };
+    }
+
+    return { success: true, message: "Booking cancelled successfully" };
+  } catch (error) {
+    console.error("Cancel Booking Error:", error);
+    return { success: false, message: "Failed to cancel booking" };
+  }
+};
+
+export const getAllBookingDetails = async ()=>{
+  try {
+    const query = `select * from bookings`;
+    const [rows] = await pool.query(query);
+    return { success: true, message: "successful", bookings: rows};
+  } catch (error) {
+    return { success: false, message: "Failed", error: error.message };
+  }
+}

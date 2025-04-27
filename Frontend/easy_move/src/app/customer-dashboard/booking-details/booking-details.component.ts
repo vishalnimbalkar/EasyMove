@@ -8,16 +8,24 @@ declare var window: any;
   styleUrls: ['./booking-details.component.css'],
 })
 export class BookingDetailsComponent {
-  bookings: any = []
+  bookings: any = [];
   constructor(private bookingService: BookingService) {}
   customer_id = Number(sessionStorage.getItem('user_id'));
+
   ngOnInit(): void {
+    this.getBookingDetails();
+  }
+
+  getBookingDetails() {
     this.bookingService
       .getBookingDetails(this.customer_id)
       .subscribe((response: any) => {
         if (response.success) {
-          this.bookings =response.bookings.sort((a: any, b: any) => {
-            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+          this.bookings = response.bookings.sort((a: any, b: any) => {
+            return (
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime()
+            );
           });
           console.log(response);
         } else {
@@ -25,26 +33,32 @@ export class BookingDetailsComponent {
         }
       });
   }
-  bookingId!:number;
-  onCancel(booking_id:number){
-    const modal = new window.bootstrap.Modal(document.getElementById('cancelModal'));
+  bookingId!: number;
+  onCancel(booking_id: number) {
+    const modal = new window.bootstrap.Modal(
+      document.getElementById('cancelModal')
+    );
     modal.show();
     this.bookingId = booking_id;
   }
-  onYes(){
-    if(this.bookingId!==undefined){
-      this.cancelBooking(this.bookingId)
+
+  onYes() {
+    if (this.bookingId !== undefined) {
+      this.bookingService
+        .cancelBooking(this.bookingId)
+        .subscribe((response: any) => {
+          if (response.success) {
+            // Update the bookings array dynamically
+            this.getBookingDetails();
+            // Hide the modal after successful cancel
+            const modalElement = document.getElementById('cancelModal');
+            const modal = window.bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+          } else {
+          }
+        });
     }
   }
-  cancelBooking(booking_id: number) {
-      this.bookingService.cancelBooking(booking_id).subscribe((response: any) => {
-        if (response.success) {
-          this.bookings = this.bookings.filter((b:any) => b.booking_id !== booking_id);
-          const modal = new window.bootstrap.Modal(document.getElementById('cancelModal'));
-    modal.hide();
-        }
-      });
-    }
 }
 // {
 //   "id": 17,

@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { CustomerManagementComponent } from './customer-management/customer-management.component';
+import { DriverManagementComponent } from './driver-management/driver-management.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -12,6 +16,18 @@ const routes: Routes = [
       },
       {
         path: 'profile', component: ProfileComponent
+      },
+      {
+        path: 'booking-details', component: BookingDetailsComponent
+      },
+      {
+        path: 'customer-management', component: CustomerManagementComponent
+      },
+      {
+        path: 'driver-management', component: DriverManagementComponent
+      },
+      {
+        path: 'payment', component: PaymentComponent
       }
     ]
   }

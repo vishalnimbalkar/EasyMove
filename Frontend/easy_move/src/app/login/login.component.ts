@@ -33,6 +33,15 @@ export class LoginComponent {
     });
   }
 
+  validateLogin() {
+    if (this.loginForm.invalid) {
+      // Mark all fields as touched to show validation errors
+      this.loginForm.markAllAsTouched();
+      return; // don't open payment modal if form invalid
+    }
+  
+    this.onLogin(); // If valid, proceed to payment
+  }
   onLogin() {
     const formData = { ...this.loginForm.value };
     this.profileService.login(formData).subscribe((response: any) => {

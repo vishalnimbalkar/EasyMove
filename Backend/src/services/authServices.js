@@ -78,3 +78,23 @@ export const getUser = async (email)=>{
     return { success: false, message: "Failed", error: error.message };
   }
 }
+
+export const getUserById = async (customer_id)=>{
+  try {
+    const query = `select * from users where id = ? and role='customer'`;
+    const [rows] = await pool.query(query, customer_id);
+    return { success: true, message: "successful", user: rows[0] };
+  } catch (error) {
+    return { success: false, message: "Failed", error: error.message };
+  }
+}
+
+export const getDriverById = async (driver_id)=>{
+  try {
+    const query = `select * from users where id = ? and role='driver'`;
+    const [rows] = await pool.query(query, driver_id);
+    return { success: true, message: "successful", user: rows[0] };
+  } catch (error) {
+    return { success: false, message: "Failed", error: error.message };
+  }
+}

@@ -21,6 +21,7 @@ export class CustomerSignupComponent {
     private route: ActivatedRoute,
     private profileService: ProfileService,
   ) {}
+
   ngOnInit() {
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
@@ -52,6 +53,16 @@ export class CustomerSignupComponent {
     });
   }
 
+  validateSignup() {
+    if (this.signupForm.invalid) {
+      // Mark all fields as touched to show validation errors
+      this.signupForm.markAllAsTouched();
+      return; // don't open payment modal if form invalid
+    }
+  
+    this.onSignup(); // If valid, proceed to payment
+  }
+  
   onSignup() {
     this.isLoader = true;
     const formData = { ...this.signupForm.value };

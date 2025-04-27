@@ -7,13 +7,17 @@ import { ProfileService } from 'src/app/services/profile.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  email!:string;
-  name!:string;
+  user:any;
   ngOnInit(): void {
-    this.email = sessionStorage.getItem('email') || "";
-    this.name = sessionStorage.getItem('name') || "";
+    const email = sessionStorage.getItem('email') || ""
+    this.getUser(email)
   }
 
   constructor(private profileService : ProfileService) { }
 
+  getUser(email: string) {
+    this.profileService.getUser(email).subscribe((response: any) => {
+    this.user = response.user
+    })
+  }
 }

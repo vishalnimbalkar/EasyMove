@@ -28,5 +28,13 @@ export class ProfileService {
 
   getUser(email:any){
     return this.http.get(this.baseUrl+"getUser/"+email)
+  } 
+
+  getUserById(customer_id:number){
+    return this.http.get(this.baseUrl+"getUserById/"+customer_id)
+  }
+  
+  getDriverById(driver_id:number){
+    return this.http.get(this.baseUrl+"getDriverById/"+driver_id)
   }
 }
