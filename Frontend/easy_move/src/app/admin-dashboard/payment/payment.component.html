@@ -1,1 +1,39 @@
-<p>payment works!</p>
+<div class="paymentDetails">
+    <div class="title ms-4">
+        <h3>Payment Details</h3>
+        <div class="searchbar">
+            <input type="search" placeholder="Serch here" style="width: 350px; border-radius: 5px;">
+        </div>
+    </div>
+    <div class="payment">
+        <table class="table table-hover"  style="color: black !important;">
+            <thead class="text-center">
+              <tr>
+                <th colspan="2">Transaction Id</th>
+                <th>amount</th>
+                <th>Payment Method</th>
+                <th>Payment Status</th>
+                <th colspan="2">Date & Time</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor = 'let payment of payments' style="height: 50px;">
+                    <td colspan="2"> {{payment.transaction_id}}</td>
+                    <td>{{ payment.amount | currency:'INR':'symbol' }}</td>
+                    <td>{{payment.payment_method}}</td>
+                    <td>{{payment.payment_status | titlecase }}</td>
+                    <td colspan="2">{{ payment.created_at | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+<!-- {
+    "id": 1,
+    "booking_id": 9,
+    "amount": "250.00",
+    "payment_method": "UPI",
+    "payment_status": "pending",
+    "transaction_id": "dghr3434lkjg",
+    "created_at": "2025-04-20T18:43:48.000Z"
+} -->

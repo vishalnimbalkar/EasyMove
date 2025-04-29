@@ -1,6 +1,17 @@
 import { pool } from "../config/db.js";
 import Razorpay from "razorpay";
 
+
+export const getAllPayments = async () => {
+  try {
+    const query = `select * from payments`;
+    const [rows] = await pool.query(query);
+    return { success: true, message: "successful", payments: rows };
+  } catch (error) {
+    return { success: false, message: "Failed", error: error.message };
+  }
+};
+
 export const getPaymentDetails = async (customer_id) => {
   try {
     const query = `
@@ -22,7 +33,11 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
+
 export const createOrder = async (amount, currency) => {
+  console.log(process.env.RAZORPAY_KEY_ID);
+  console.log(process.env.RAZORPAY_KEY_SECRET);
+  
   const options = {
     amount: amount * 100, // amount in paise
     currency: currency,

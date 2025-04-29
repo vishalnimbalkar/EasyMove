@@ -42,7 +42,7 @@ export const loginUser = async (data) => {
         success: true,
         message: 'User login successful',
         user: rows[0],
-        role: 'user',
+        role: rows[0].role,
       };
     }
 

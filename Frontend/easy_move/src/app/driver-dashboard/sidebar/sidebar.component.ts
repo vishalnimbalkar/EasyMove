@@ -16,5 +16,9 @@ export class SidebarComponent {
   onLogout(){
     this.router.navigate(['login'])
     sessionStorage.removeItem('email')
+    sessionStorage.removeItem('user_id')
+    sessionStorage.removeItem('phone')
+    sessionStorage.removeItem('name')
+    sessionStorage.removeItem('user')
   }
 }

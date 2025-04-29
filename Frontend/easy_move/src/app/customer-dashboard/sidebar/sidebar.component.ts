@@ -19,5 +19,6 @@ export class SidebarComponent {
     sessionStorage.removeItem('user_id')
     sessionStorage.removeItem('phone')
     sessionStorage.removeItem('name')
+    sessionStorage.removeItem('user')
   }
 }

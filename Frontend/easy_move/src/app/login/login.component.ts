@@ -42,26 +42,35 @@ export class LoginComponent {
   
     this.onLogin(); // If valid, proceed to payment
   }
+  
+
   onLogin() {
     const formData = { ...this.loginForm.value };
     this.profileService.login(formData).subscribe((response: any) => {
-      if (response.success && response !== null) {
+      if (response.success && response.user) {
+        // Save full user object with role
+        sessionStorage.setItem('user', JSON.stringify({'role':response.role}));
         sessionStorage.setItem('email', response.user.email);
-        sessionStorage.setItem('user_id',response.user.id);
-        sessionStorage.setItem('name',response.user.name);
-        sessionStorage.setItem('phone',response.user.phone);
-        if(response.role === 'user'){
-          if (response.user.role === 'customer') {
-            this.router.navigate(['/customer-dashboard']);
-          } else if (response.user.role === 'driver') {
-            this.router.navigate(['/driver-dashboard']);
-          } 
-        }else if(response.role === 'admin'){
-            this.router.navigate(['/admin-dashboard']);
+        sessionStorage.setItem('user_id', response.user.id);
+        sessionStorage.setItem('name', response.user.name);
+        sessionStorage.setItem('phone', response.user.phone);
+  
+        // Role-based redirection
+        const role = response.role;
+  
+        if (role === 'customer') {
+          this.router.navigate(['/customer-dashboard']);
+        } else if (role === 'driver') {
+          this.router.navigate(['/driver-dashboard']);
+        } else if (role === 'admin') {
+          this.router.navigate(['/admin-dashboard']);
+        } else {
+          this.router.navigate(['/login']); // fallback
         }
       } else {
         this.router.navigate(['/login']);
       }
     });
   }
+  
 }

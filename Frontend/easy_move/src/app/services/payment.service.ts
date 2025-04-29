@@ -10,6 +10,10 @@ export class PaymentService {
 
   baseUrl: string = 'http://localhost:3000/payment/';
 
+  getAllPayments(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'getAll');
+  }
+
   getPaymentDetails(customer_id: number): Observable<any> {
     return this.http.get<any>(this.baseUrl + 'getDetails/' + customer_id);
   }
