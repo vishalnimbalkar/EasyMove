@@ -7,6 +7,7 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
 import { PaymentComponent } from './payment/payment.component';
 import { CustomerManagementComponent } from './customer-management/customer-management.component';
 import { DriverManagementComponent } from './driver-management/driver-management.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { DriverManagementComponent } from './driver-management/driver-management
   ],
   imports: [
     CommonModule,
-    AdminDashboardRoutingModule
+    AdminDashboardRoutingModule,
+    FormsModule
   ]
 })
 export class AdminDashboardModule { }

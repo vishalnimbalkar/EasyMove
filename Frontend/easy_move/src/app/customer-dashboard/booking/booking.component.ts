@@ -59,7 +59,7 @@ export class BookingComponent {
   
     this.paymentService.createOrder(this.fare).subscribe((order: any) => {
       const options = {
-        key: 'rzp_test_JGXuS7FgUDrKvv',
+        key: 'rzp_test_UV4TK1BtVZllmL',
         amount: order.amount,
         currency: order.currency,
         name: 'EasyMove',

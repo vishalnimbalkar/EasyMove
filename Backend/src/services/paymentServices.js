@@ -35,9 +35,6 @@ const razorpay = new Razorpay({
 
 
 export const createOrder = async (amount, currency) => {
-  console.log(process.env.RAZORPAY_KEY_ID);
-  console.log(process.env.RAZORPAY_KEY_SECRET);
-  
   const options = {
     amount: amount * 100, // amount in paise
     currency: currency,

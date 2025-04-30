@@ -1,5 +1,5 @@
 import userModel from "../models/userModel.js";
-import { getUser, loginUser, registerUser,getUserById, getDriverById } from "../services/authServices.js";
+import { getUser, loginUser, registerUser,getUserById, getDriverById, checkEamil } from "../services/authServices.js";
 
 export const register = async (req, res) => {
   const { name, email, password, phone, role } = req.body;
@@ -66,6 +66,21 @@ export const getDriverDetailsById = async (req, res)=>{
   const driver_id = req.params.driver_id;
   try {
     const response = await getDriverById(driver_id);
+    if (response.success) {
+      res.status(200).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    return {success : false , message : 'Failed'}
+  }
+}
+
+
+export const checkEamilController = async (req, res)=>{
+  const {email} = req.body;
+  try {
+    const response = await checkEamil(email);
     if (response.success) {
       res.status(200).json(response);
     } else {

@@ -18,6 +18,9 @@
                     placeholder=" Enter Password "  required minlength="8"
                     [ngClass]="{'error':(loginForm.controls['password'].touched || loginForm.controls['password'].dirty) && (loginForm.controls['password'].hasError('required')) ||(loginForm.controls['password'].hasError('pattern')) || (loginForm.controls['password'].hasError('minLength')) }">
             </div>
+            <div class="show-error" *ngIf="errorMessage">
+                <p style="color: red; margin: 0 0 -15px 0 !important;" class="text-center">{{ errorMessage }}</p>
+              </div>   
             <div class="btn w-100">
                 <button class="signup mt-3" (click)="validateLogin()">Login</button>
             </div>

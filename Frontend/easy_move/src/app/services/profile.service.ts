@@ -37,4 +37,12 @@ export class ProfileService {
   getDriverById(driver_id:number){
     return this.http.get(this.baseUrl+"getDriverById/"+driver_id)
   }
+
+  checkEmail(email:string){
+    return this.http.post(this.baseUrl+"checkEmail",{email})
+  }
+
+  updateUser(user:any){
+    return this.http.post(this.baseUrl+"checkEmail",user)
+  }
 }

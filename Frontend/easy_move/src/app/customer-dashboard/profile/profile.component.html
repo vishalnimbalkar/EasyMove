@@ -6,7 +6,7 @@
         </div>
         <hr>
         <div class="details" >
-            <i class="bi bi-pencil-square"></i>
+            <i class="bi bi-pencil-square" (click)="onEdit()"></i>
             <ul>
                 <li><span>Name : {{user.name}}</span></li>
                 <br>
@@ -15,22 +15,6 @@
                 <li><span>Mobile Number : {{user.phone}}</span></li>
             </ul>
         </div>
-        <!-- <h3 style="margin-bottom: -10px;">Edit Profile</h3> -->
-        <!-- <form>
-            <div class="form-group">
-                <input type="text" class="form-control" formControlName="name">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" formControlName="email">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" formControlName="m_no">
-            </div>
-            <div class="make-center">
-                <button class="login" style="width: 120px; height:40 px;" >Cancel</button>&nbsp;&nbsp;&nbsp;
-                <input type="submit" style="width: 120px; height:40 px;" class="signup">
-            </div>
-        </form> -->
     </div>
     <!-- <div class="right">
         <div class="top">
@@ -41,3 +25,34 @@
         </div>
     </div> -->
 </div>
+
+  <!-- Edit Profile Modal -->
+  <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h3 class="modal-title" id="updateModalLabel">Edit Profile</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control"  [(ngModel)]="updatedName">
+          </div>
+          <div class="form-group mb-3">
+            <label for="password">New Password</label>
+            <input type="password" id="password"class="form-control"  [(ngModel)]="updatedPassword">
+          </div>
+        </div>
+      
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-primary p-1" (click)="saveChanges()">Save</button>
+          <button type="button" class="btn btn-secondary p-1" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  

@@ -1,42 +1,49 @@
 <div class="profile">
     <div class="left">
-        <div class="img">
-            <i class="bi bi-person-circle"></i>
-            <span>{{name}}</span>
-        </div>
-        <hr>
-        <div class="details" >
-            <i class="bi bi-pencil-square"></i>
-            <ul>
-                <li><span>Name : {{name}}</span></li>
-                <br>
-                <li><span>Email : {{email}}</span></li>
-                <br>
-            </ul>
-        </div>
-        <!-- <h3 style="margin-bottom: -10px;">Edit Profile</h3> -->
-        <!-- <form>
-            <div class="form-group">
-                <input type="text" class="form-control" formControlName="name">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" formControlName="email">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" formControlName="m_no">
-            </div>
-            <div class="make-center">
-                <button class="login" style="width: 120px; height:40 px;" >Cancel</button>&nbsp;&nbsp;&nbsp;
-                <input type="submit" style="width: 120px; height:40 px;" class="signup">
-            </div>
-        </form> -->
+      <div class="img">
+        <i class="bi bi-person-circle"></i>
+        <span>{{ name }}</span>
+      </div>
+      <hr>
+      <div class="details">
+        <i class="bi bi-pencil-square" (click)="onEdit()"></i>
+        <ul>
+          <li><span>Name : {{ name }}</span></li>
+          <br />
+          <li><span>Email : {{ email }}</span></li>
+          <br />
+        </ul>
+      </div>
     </div>
-    <!-- <div class="right">
-        <div class="top">
-           
+  </div>
+  
+  <!-- Edit Profile Modal -->
+  <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h3 class="modal-title" id="updateModalLabel">Edit Profile</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="bottom">
-        
+      
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <label for="name">Name</label>
+            <input type="text" id="name" [(ngModel)]="updatedName" class="form-control">
+          </div>
+          <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input type="email" id="email" [(ngModel)]="updatedEmail" class="form-control">
+          </div>
         </div>
-    </div> -->
-</div>
+      
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-primary" (click)="saveChanges()">Save</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  

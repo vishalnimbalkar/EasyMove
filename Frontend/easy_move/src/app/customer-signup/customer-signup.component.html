@@ -30,11 +30,14 @@
                     [ngClass]="{'error':(signupForm.controls['password'].touched || signupForm.controls['password'].dirty) && (signupForm.controls['password'].hasError('required')) || (signupForm.controls['password'].hasError('pattern'))  ||  (signupForm.controls['password'].hasError('minLength'))}">
             </div>
             <div class="form-group">
-                <label for="name">Re-enter Password</label><br>
+                <label for="name">Confirm Password</label><br>
                 <input class="form-control" type="repassword" id="repassword" formControlName="repassword"
-                    placeholder=" Re-enter Password "  required
+                    placeholder=" Confirm Password "  required
                     [ngClass]="{'error':(signupForm.controls['repassword'].touched || signupForm.controls['repassword'].dirty) && (signupForm.controls['repassword'].hasError('required'))}">
             </div>
+            <div class="show-error" *ngIf="errorMessage">
+                <p style="color: red; margin: 0 0 -15px 0 !important;" class="text-center">{{ errorMessage }}</p>
+              </div>                           
             <div class="btn">
                 <button class="signup mt-4" (click)="validateSignup()">Signup</button>
             </div>
