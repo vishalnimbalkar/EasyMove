@@ -35,6 +35,7 @@ export class ProfileComponent {
 
   saveChanges() {
     const updatedUser = {
+      user_id : sessionStorage.getItem('user_id'),
       name : this.updatedName,
       password : this.updatedPassword
     }

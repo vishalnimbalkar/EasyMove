@@ -43,6 +43,6 @@ export class ProfileService {
   }
 
   updateUser(user:any){
-    return this.http.post(this.baseUrl+"checkEmail",user)
+    return this.http.post(this.baseUrl+"updateUser",user)
   }
 }

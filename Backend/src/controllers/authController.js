@@ -1,5 +1,5 @@
 import userModel from "../models/userModel.js";
-import { getUser, loginUser, registerUser,getUserById, getDriverById, checkEamil } from "../services/authServices.js";
+import { getUser, loginUser, registerUser, registerDriver,getUserById, getDriverById, checkEamil, updateUser } from "../services/authServices.js";
 
 export const register = async (req, res) => {
   const { name, email, password, phone, role } = req.body;
@@ -7,6 +7,22 @@ export const register = async (req, res) => {
 
   try {
     const response = await registerUser(user);
+    if (response.success) {
+      res.status(200).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    return {success : false , message : 'Failed To Register'}
+  }
+};
+
+export const register2 = async (req, res) => {
+  const { name, email, password, phone, role } = req.body;
+  const user = { name, email, password, phone, role };
+
+  try {
+    const response = await registerDriver(user);
     if (response.success) {
       res.status(200).json(response);
     } else {
@@ -90,3 +106,19 @@ export const checkEamilController = async (req, res)=>{
     return {success : false , message : 'Failed'}
   }
 }
+
+export const updateUserController = async (req, res) => {
+  const {user_id, name, password } = req.body;
+  const user = {user_id, name, password};
+
+  try {
+    const response = await updateUser(user);
+    if (response.success) {
+      res.status(200).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    return {success : false , message : 'Failed To Register'}
+  }
+};

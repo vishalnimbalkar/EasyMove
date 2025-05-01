@@ -1,6 +1,9 @@
 <div class="bookingDetails">
     <div class="title ms-4">
-        <h3>Customers</h3>
+        <!-- <h3>Drivers</h3> -->
+        <div class="add">
+          <button class="login p-1" (click)="onAdd()">Add Driver</button>
+        </div>
         <div class="searchbar">
             <input type="search" placeholder="Serch here" style="width: 350px; border-radius: 5px;">
         </div>
@@ -36,15 +39,75 @@
     "role": "driver",
     "created_at": "2025-04-17T08:50:48.000Z"
 }, -->
-<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+<div class="modal fade" id="driverModal" tabindex="-1" aria-labelledby="driverModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="bookingModalLabel">Large Modal Example</h5>
+          <h5 class="modal-title" id="driverModalLabel">Add Driver</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex justify-content-center">
+            <form id="form1" [formGroup]="signupForm" style="width: 60%;"> 
+                <div class="form-group">
+                    <label for="name">Name</label><br>
+                    <input class="form-control" type="text" id="name" formControlName="name"
+                        placeholder=" Enter Full Name " minlength="1" required
+                        [ngClass]="{'error':(signupForm.controls['name'].touched || signupForm.controls['name'].dirty) && (signupForm.controls['name'].hasError('required'))}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label><br>
+                    <input class="form-control" type="email" id="email" [value]="email" formControlName="email" required placeholder=" Enter Email "
+                    [ngClass]="{'error':(signupForm.controls['email'].touched || signupForm.controls['email'].dirty) && (signupForm.controls['email'].hasError('required')) ||  (signupForm.controls['email'].hasError('email'))}">
+                </div>
+                <div class="form-group">
+                    <label for="mno">Mobile Number</label><br>
+                    <input class="form-control" type="text" id="phone" formControlName="phone"
+                        placeholder=" Enter Mobile Number " maxlength="10" required maxlength="10"
+                        [ngClass]="{'error':(signupForm.controls['phone'].touched || signupForm.controls['phone'].dirty) && (signupForm.controls['phone'].hasError('required'))}">
+                </div>
+                <div class="form-group">
+                    <label for="name">Password</label><br>
+                    <input class="form-control" type="password" id="password" formControlName="password"
+                        placeholder=" Enter Password " required minlength="8"
+                        [ngClass]="{'error':(signupForm.controls['password'].touched || signupForm.controls['password'].dirty) && (signupForm.controls['password'].hasError('required')) || (signupForm.controls['password'].hasError('pattern'))  ||  (signupForm.controls['password'].hasError('minLength'))}">
+                </div>
+                <div class="form-group">
+                    <label for="name">Confirm Password</label><br>
+                    <input class="form-control" type="repassword" id="repassword" formControlName="repassword"
+                        placeholder=" Confirm Password "  required
+                        [ngClass]="{'error':(signupForm.controls['repassword'].touched || signupForm.controls['repassword'].dirty) && (signupForm.controls['repassword'].hasError('required'))}">
+                </div>
+                <div class="show-error" *ngIf="errorMessage">
+                    <p style="color: red; margin: 0 0 -15px 0 !important;" class="text-center">{{ errorMessage }}</p>
+                  </div>                           
+                <div class="btn">
+                    <button class="login mt-4">Add</button>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary p-1" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookingModalLabel">booking details</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Your content goes here!
+         <!-- <div class="customer">
+          <p>{{customer.name}}</p>
+          <p>{{customer.phone}}</p>
+         </div>
+         <div class="driver">
+          <p>{{driver.name}}</p>
+          <p>{{driver.phone}}</p>
+         </div> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

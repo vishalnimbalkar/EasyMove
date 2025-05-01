@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerSignupComponent } from './customer-signup/customer-signup.component';
 import { AuthGuard } from './guards/auth.guard';
+import { DriverSignupComponent } from './driver-signup/driver-signup.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path:'customer-signup', component:CustomerSignupComponent
+  },
+  {
+    path:'driver-signup', component:DriverSignupComponent
   },
   {
     path: 'admin-dashboard',

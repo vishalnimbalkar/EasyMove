@@ -7,7 +7,8 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
 import { PaymentComponent } from './payment/payment.component';
 import { CustomerManagementComponent } from './customer-management/customer-management.component';
 import { DriverManagementComponent } from './driver-management/driver-management.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { VehicleManagementComponent } from './vehicle-management/vehicle-management.component';
 
 
 
@@ -18,12 +19,14 @@ import { FormsModule } from '@angular/forms';
     BookingDetailsComponent,
     PaymentComponent,
     CustomerManagementComponent,
-    DriverManagementComponent
+    DriverManagementComponent,
+    VehicleManagementComponent
   ],
   imports: [
     CommonModule,
     AdminDashboardRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminDashboardModule { }
