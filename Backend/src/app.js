@@ -5,6 +5,7 @@ import bookingRoutes from "./routes/bookingRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import customerRoutes from './routes/customerRoutes.js'
 import driverRoutes from './routes/driverRoutes.js'
+import vehicleRoutes from './routes/vehicleRoutes.js'
 import cors from 'cors';
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
@@ -24,6 +25,7 @@ app.use('/booking', bookingRoutes);
 app.use('/payment', paymentRoutes);
 app.use('/customer', customerRoutes);
 app.use('/driver', driverRoutes);
+app.use('/vehicle', vehicleRoutes);
 
 app.listen(3000, async() => {
   console.log('Server running on port 3000');

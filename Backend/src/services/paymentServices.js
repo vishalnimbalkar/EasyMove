@@ -27,6 +27,21 @@ export const getPaymentDetails = async (customer_id) => {
   }
 };
 
+export const getPaymentDetails2 = async (driver_id) => {
+  try {
+    const query = `
+      SELECT p.*
+      FROM payments p
+      JOIN bookings b ON p.booking_id = b.id
+      WHERE b.driver_id = ?
+    `;
+    const [rows] = await pool.query(query, [driver_id]);
+    return { success: true, message: "successful", payments: rows };
+  } catch (error) {
+    return { success: false, message: "Failed", error: error.message };
+  }
+};
+
 // Initialize Razorpay instance (correct name is razorpay)
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,

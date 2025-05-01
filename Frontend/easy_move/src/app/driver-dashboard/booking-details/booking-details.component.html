@@ -1,0 +1,77 @@
+<div class="bookingDetails">
+    <div class="title ms-4">
+        <h3>Booking Details</h3>
+        <div class="searchbar">
+            <input type="search" placeholder="Serch here" style="width: 350px; border-radius: 5px;">
+        </div>
+    </div>
+    <div class="booking">
+        <table class="table table-hover"  style="color: black !important;">
+            <thead class="text-center">
+              <tr>
+                <th colspan="2">Pickup Location</th>
+                <th colspan="2">Dropoff Location</th>
+                <th>Pickup Date</th>
+                <th>Fare</th>
+                <th>Booking Status</th>
+                <th colspan="2">Date & Time</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor = 'let booking of bookings'>
+                    <td colspan="2"> {{booking.pickup_location}}</td>
+                    <td colspan="2">{{booking.dropoff_location}}</td>
+                    <td>{{booking.pickup_date | date:'dd/MM/yyyy'}}</td>
+                    <td>{{ booking.fare | currency:'INR':'symbol' }}</td>
+                    <td>{{booking.booking_status | titlecase }}</td>
+                    <td colspan="2">{{booking.created_at | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                    <td >
+                        <button class="btn btn-outline-success p-1" style="margin-left: 12px;"
+                          [disabled]="booking.booking_status === 'completed' || booking.booking_status === 'cancelled'"
+                          (click)="onCompleted(booking.id)">
+                          Completed
+                        </button>
+                      </td>
+                      
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h3 class="modal-title" id="cancelModalLabel">Booking Completed</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body text-center">
+          <p>Confirm Booking is Completed</p>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-success p-2" (click)="onYes()">Yes</button>
+        <button type="button" class="btn btn-secondary p-2" data-bs-dismiss="modal">No</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- // {
+    //   "id": 17,
+    //   "customer_id": 1,
+    //   "driver_id": null,
+    //   "pickup_location": "d",
+    //   "dropoff_location": "d",
+    //   "booking_status": "pending",
+    //   "fare": "620.00",
+    //   "payment_status": "pending",
+    //   "created_at": "2025-04-19T18:52:03.000Z",
+    //   "pickup_date": "2025-04-25T18:30:00.000Z",
+    //   "weight": 2000
+    // }, -->

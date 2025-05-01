@@ -1,4 +1,4 @@
-import {  getPaymentDetails, createOrder, insertPayment, getAllPayments } from "../services/paymentServices.js";
+import {  getPaymentDetails, getPaymentDetails2, createOrder, insertPayment, getAllPayments } from "../services/paymentServices.js";
 import Razorpay from 'razorpay';
 
 export const getAllPaymentsController = async (req, res)=>{
@@ -19,6 +19,21 @@ export const getAllPaymentsController = async (req, res)=>{
     const customer_id = req.params.customer_id;    
     try {
       const response = await getPaymentDetails(customer_id);
+      if (response.success) {
+        res.status(200).json(response);
+      } else {
+        res.status(400).json(response);
+      }
+    } catch (error) {
+        console.log(error);
+      return {success : false , message : 'Failed'}
+    }
+  }
+
+  export const getPaymentDetail2 = async (req, res)=>{
+    const driver_id = req.params.driver_id;    
+    try {
+      const response = await getPaymentDetails2(driver_id);
       if (response.success) {
         res.status(200).json(response);
       } else {

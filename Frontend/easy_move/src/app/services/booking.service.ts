@@ -19,8 +19,17 @@ export class BookingService {
       
     }
 
+    getBookingDetailsForDriver(driver_id: number): Observable<any> {
+      return this.http.get<any>(this.baseUrl + 'getDetailsForDriver/'+driver_id);
+
+    }
+
     cancelBooking(booking_id:number): Observable<any> {
       return this.http.delete<any>(this.baseUrl + 'cancelBooking/'+booking_id);
+    }
+
+    completeBooking(booking_id:number): Observable<any> {
+      return this.http.post<any>(this.baseUrl + 'completeBooking',{booking_id});
     }
 
     getAllBookingDetails(): Observable<any> {

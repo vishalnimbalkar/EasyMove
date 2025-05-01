@@ -15,7 +15,11 @@ export class PaymentService {
   }
 
   getPaymentDetails(customer_id: number): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'getDetails/' + customer_id);
+    return this.http.get<any>(this.baseUrl + 'getCustomerDetails/' + customer_id);
+  }
+
+  getDriverPaymentDetails(driver_id: number): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'getDriverDetails/' + driver_id);
   }
 
   createOrder(amount: number) {
