@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
 import { BookingService } from 'src/app/services/booking.service';
 declare var window: any;
 
@@ -9,7 +10,9 @@ declare var window: any;
 })
 export class BookingDetailsComponent {
   bookings: any = [];
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService,
+    private toast: NgToastService
+  ) {}
   customer_id = Number(sessionStorage.getItem('user_id'));
 
   ngOnInit(): void {
@@ -48,6 +51,7 @@ export class BookingDetailsComponent {
         .cancelBooking(this.bookingId)
         .subscribe((response: any) => {
           if (response.success) {
+            this.toast.success({ detail: "SUCCESS", summary: 'Booking Canceled Successfully', duration: 5000, position: 'topRight' });
             // Update the bookings array dynamically
             this.getBookingDetails();
             // Hide the modal after successful cancel
@@ -55,6 +59,7 @@ export class BookingDetailsComponent {
             const modal = window.bootstrap.Modal.getInstance(modalElement);
             modal.hide();
           } else {
+            this.toast.error({ detail: "Error! please try again!", summary: 'Failed To Cancel Booking', duration: 5000, position: 'topRight' });
           }
         });
     }

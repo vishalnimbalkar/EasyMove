@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { BookingService } from 'src/app/services/booking.service';
 import { PaymentService } from 'src/app/services/payment.service';
 declare var window: any;
@@ -18,7 +19,8 @@ export class BookingComponent {
     private fb: FormBuilder,
     private bookingService: BookingService,
     private paymentService: PaymentService,
-    private router:Router
+    private router:Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -104,11 +106,12 @@ export class BookingComponent {
         console.log('Booking saved', response);
         this.savePaymentDetails(response.booking_id, paymentResponse);
         console.log('save payment after');
-        
+        this.toast.success({ detail: "SUCCESS", summary: 'Booking Successfully', duration: 5000, position: 'topRight' });
         this.router.navigate(['customer-dashboard/booking-details']); 
         this.bookingForm.reset();
       } else {
         console.log('Booking failed', response);
+        this.toast.error({ detail: "Error! please try again!", summary: 'Failed To Book', duration: 5000, position: 'topRight' });
       }
     });
   }

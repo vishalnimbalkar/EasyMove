@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private profileService: ProfileService,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -95,13 +97,16 @@ export class LoginComponent {
         } else {
           this.router.navigate(['/login']); // fallback
         }
+        this.toast.success({ detail: "SUCCESS", summary: 'Login Successfully', duration: 5000, position: 'topRight' });
       } else {
+        this.toast.error({ detail: "Error! please try again!", summary: 'Invalid Credentials', duration: 5000, position: 'topRight' });
         this.errorMessage = 'Invalid login credentials'; // Handle login failure
         this.router.navigate(['/login']);
       }
     }, (err) => {
       this.isLoader = false;
       this.errorMessage = err.error?.message || 'Something went wrong during login';
+      this.toast.error({ detail: "Error! please try again!", summary: 'Invalid Credentials', duration: 5000, position: 'topRight' });
     });
   }
 }

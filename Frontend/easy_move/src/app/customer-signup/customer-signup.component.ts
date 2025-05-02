@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-customer-signup',
@@ -20,6 +21,7 @@ export class CustomerSignupComponent {
     private router: Router,
     private route: ActivatedRoute,
     private profileService: ProfileService,
+    private toast: NgToastService
   ) {}
 
   ngOnInit() {
@@ -121,6 +123,8 @@ export class CustomerSignupComponent {
         } else {
           // Show backend error message
           this.errorMessage = res.message || 'Email is already in use';
+          this.toast.error({ detail: "Error! please try again!", summary: 'Email is already in use', duration: 5000, position: 'topRight' });
+
         }
       },
       (err) => {
@@ -139,13 +143,16 @@ export class CustomerSignupComponent {
         this.isLoader = false;
         if (response.success) {
           this.router.navigate(['/login']);
+          this.toast.success({ detail: "SUCCESS", summary: 'Signup Successfully', duration: 5000, position: 'topRight' });
         } else {
           this.errorMessage = 'Signup failed. Please try again.';
+          this.toast.error({ detail: "Error! please try again!", summary: 'Failed To Signup', duration: 5000, position: 'topRight' });
         }
       },
       (err) => {
         this.isLoader = false;
         this.errorMessage = err.error?.message || 'Server error during signup';
+        this.toast.error({ detail: "Error! please try again!", summary: 'Server Error', duration: 5000, position: 'topRight' });
       }
     );
   }
