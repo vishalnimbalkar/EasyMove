@@ -132,7 +132,7 @@ label{
       transform: rotateY(70deg);
       animation-delay: .4s;
     }
-
+ 
   @keyframes rotate {
     0% {
       transform: translate(-50%, -50%) rotateZ(0deg);

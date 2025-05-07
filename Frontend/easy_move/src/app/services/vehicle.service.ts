@@ -24,8 +24,12 @@ export class VehicleService {
       return this.http.get<any>(this.baseUrl + 'getById/'+driver_id);
     }
 
+    getByVehicleId(vehicle_id:number): Observable<any> {
+      return this.http.get<any>(this.baseUrl + 'getByVehicleId/'+vehicle_id);
+    }
+
     updateVehicle(payload: any): Observable<any> {
-      return this.http.post<any>(this.baseUrl + 'update', payload);
+      return this.http.patch<any>(this.baseUrl + 'update', payload);
     }
 
     deleteVehicle(vehicle_id:number): Observable<any> {

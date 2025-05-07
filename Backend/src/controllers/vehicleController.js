@@ -1,4 +1,4 @@
-import { getAllVehicles, getVehicleById, addVehicle, updateVehicle, deleteVehicle } from "../services/vehicleServices.js";
+import { getAllVehicles, getVehicleById, addVehicle, updateVehicle, deleteVehicle, getByVehicleId } from "../services/vehicleServices.js";
 
 export const addVehicleController = async (req, res) => {
   const { driver_id, vehicle_type, vehicle_number, capacity } = req.body;
@@ -33,6 +33,20 @@ export const  getVehicleByIdController = async (req, res)=>{
   const driver_id = req.params.driver_id;   
     try {
       const response = await getVehicleById(driver_id);
+      if (response.success) {
+        res.status(200).json(response);
+      } else {
+        res.status(400).json(response);
+      }
+    } catch (error) {
+      return {success : false , message : 'Failed'}
+    }
+  }
+
+export const  getByVehicleIdController = async (req, res)=>{
+  const vehicle_id = req.params.vehicle_id;
+    try {
+      const response = await getByVehicleId(vehicle_id);
       if (response.success) {
         res.status(200).json(response);
       } else {

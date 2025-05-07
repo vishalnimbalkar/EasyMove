@@ -20,6 +20,16 @@ export const getVehicleById = async (driver_id) => {
     }
   };
 
+export const getByVehicleId = async (vehicle_id) => {    
+    try {
+      const query = `select * from vehicles where id = ?`;
+      const [rows] = await pool.query(query,vehicle_id);
+      return { success: true, message: "successful", vehicle: rows[0] };
+    } catch (error) {
+      return { success: false, message: "Failed", error: error.message };
+    }
+  };
+
   export const addVehicle = async (vehicle) => {
     try {
         const query = `insert into vehicles (driver_id, vehicle_type, vehicle_number, capacity) values (?,?,?,?)`;

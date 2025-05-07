@@ -15,7 +15,7 @@ const app = express();
 
 app.use(cors({
   origin: "http://localhost:4200", // Allow requests from Angular app
-  methods: "GET,POST,PUT,DELETE,OPTIONS", // Allowed methods
+  methods: "GET,POST,PUT,PATCH,DELETE,OPTIONS", // Allowed methods
   allowedHeaders: "Content-Type,Authorization" // Allowed headers
 }))
 app.use(express.json()); 
@@ -26,7 +26,6 @@ app.use('/payment', paymentRoutes);
 app.use('/customer', customerRoutes);
 app.use('/driver', driverRoutes);
 app.use('/vehicle', vehicleRoutes);
-
 app.listen(3000, async() => {
   console.log('Server running on port 3000');
   try {
