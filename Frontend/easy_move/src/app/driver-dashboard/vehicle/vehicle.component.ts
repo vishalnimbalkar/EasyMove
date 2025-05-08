@@ -112,7 +112,20 @@ export class VehicleComponent {
   }
 
   submitVehicle(){
-
+    this.vehicleService
+    .updateVehicle(this.vehicleUpdateForm.value)
+    .subscribe((response: any) => {
+      if (response.success) {
+        this.getAllVehicles();
+        this.toast.success({ detail: "SUCCESS", summary: 'Vehicle Updated Successfully!', duration: 5000, position: 'topRight' });
+      } 
+      if(response.success===false){
+        this.toast.error({ detail: "Error! please try again!", summary: 'Failed To Update', duration: 5000, position: 'topRight' });
+      }
+    });
+  const modalElement = document.getElementById('updateVehicleModal');
+  const modal = window.bootstrap.Modal.getInstance(modalElement);
+  modal.hide();
   }
   
 

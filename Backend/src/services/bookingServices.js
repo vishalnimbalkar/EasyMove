@@ -87,3 +87,17 @@ export const getAllBookingDetails = async ()=>{
     return { success: false, message: "Failed", error: error.message };
   }
 }
+
+export const assignDriver = async (booking_id, driver_id)=>{
+  try {
+    const query = `update bookings set driver_id = ? where booking_id = ?`
+    values = [
+      driver_id,
+      booking_id
+    ]
+    await pool.query(query, values);
+    return { success: true, message: "Assigned successfullyy"};
+  } catch (error) {
+    return { success: false, message: "Failed", error: error.message };
+  }
+}

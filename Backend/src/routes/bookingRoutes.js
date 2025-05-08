@@ -1,5 +1,5 @@
 import express from 'express';
-import {booking_request, getBookingDetail, cancelBookingController, getAllBookingDetailController, getBookingDetailsForDriverController, completedBookingController} from '../controllers/bookingController.js'
+import {booking_request, getBookingDetail, cancelBookingController, getAllBookingDetailController, getBookingDetailsForDriverController, completedBookingController, assignDriverController} from '../controllers/bookingController.js'
 
 const router = express.Router();
 
@@ -9,5 +9,6 @@ router.get('/getDetailsForDriver/:driver_id', getBookingDetailsForDriverControll
 router.delete('/cancelBooking/:booking_id', cancelBookingController);
 router.post('/completeBooking', completedBookingController);
 router.get('/getAllDetails/', getAllBookingDetailController);
+router.patch('/assignDriver', assignDriverController)
 
 export default router;

@@ -35,4 +35,10 @@ export class BookingService {
     getAllBookingDetails(): Observable<any> {
       return this.http.get<any>(this.baseUrl + 'getAllDetails');
     }
+
+    assignDriver(payload:any): Observable<any> {
+      return this.http.patch<any>(this.baseUrl + 'assignDriver',payload);
+    }
+
+    
 }

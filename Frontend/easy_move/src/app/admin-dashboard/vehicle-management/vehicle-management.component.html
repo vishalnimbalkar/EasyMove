@@ -7,25 +7,64 @@
     </div>
     <div class="booking">
         <table class="table table-hover"  style="color: black !important;">
-            <thead class="text-center">
-              <tr>
-                <th colspan="2">Name</th>
-                <th colspan="2">Email</th>
-                <th>Mobile Number</th>
-                <th colspan="2">Date & Time</th>
+          <thead class="text-center">
+            <tr>
+              <th>Driver Name</th>
+              <th>Driver Mobile</th>
+              <th>Vehicle Name</th>
+              <th>Vehicle Number</th>
+              <th>Capacity</th>
+              <th>Status</th>
+              <th>Date & Time</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+              <tr *ngFor = 'let vehicle of vehicles'>
+                  <td > {{vehicle.driver_name}}</td>
+                  <td > {{vehicle.driver_phone}}</td>
+                  <td > {{vehicle.vehicle_type}}</td>
+                  <td >{{vehicle.vehicle_number}}</td>
+                  <td>{{vehicle.capacity}}</td>
+                  <td>{{vehicle.status}}</td>
+                  <td>{{vehicle.vehicle_created_at | date:'dd/MM/yyyy hh:mm:ss'}}</td>
               </tr>
-            </thead>
-            <tbody class="text-center">
-                <!-- <tr *ngFor = 'let driver of drivers'>
-                    <td colspan="2"> {{driver.name}}</td>
-                    <td colspan="2">{{driver.email}}</td>
-                    <td>{{driver.phone}}</td>
-                    <td colspan="2">{{driver.created_at | date:'dd/MM/yyyy hh:mm:ss'}}</td>
-                </tr> -->
-            </tbody>
+          </tbody>
           </table>
     </div>
 </div>
+<!-- capacity
+: 
+2000
+driver_created_at
+: 
+"2025-05-01T07:28:20.000Z"
+driver_email
+: 
+"rahul@gmail.com"
+driver_id
+: 
+32
+driver_name
+: 
+"Rahul Nimbalkar"
+driver_phone
+: 
+"9767234605"
+status
+: 
+"available"
+vehicle_created_at
+: 
+"2025-05-01T18:33:58.000Z"
+vehicle_id
+: 
+1
+vehicle_number
+: 
+"MH 12 42938"
+vehicle_type
+: 
+"pickup 470" -->
 <!-- 
 <div class="modal fade" id="driverModal" tabindex="-1" aria-labelledby="driverModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

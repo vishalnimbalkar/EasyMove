@@ -42,7 +42,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body d-flex justify-content-center">
-            <form id="form1" [formGroup]="vehicleForm" style="width: 60%;" (ngSubmit)="submit()"> 
+            <form id="form1" [formGroup]="vehicleForm" style="width: 70%;" (ngSubmit)="submit()"> 
                 <div class="form-group">
                     <label for="vehicle_type">Vehicle Name</label><br>
                     <input class="form-control" type="text" id="vehicle_type" formControlName="vehicle_type"
@@ -61,11 +61,6 @@
                         placeholder=" Enter Capacity" minlength="1" required min="100"
                         [ngClass]="{'error':(vehicleForm.controls['capacity'].touched || vehicleForm.controls['capacity'].dirty) && (vehicleForm.controls['capacity'].hasError('required')) || (vehicleForm.controls['capacity'].hasError('min'))}">
                 </div>
-                <!-- <div class="form-group">
-                    <label for="email">Email</label><br>
-                    <input class="form-control" type="email" id="email" [value]="email" formControlName="email" required placeholder=" Enter Email "
-                    [ngClass]="{'error':(signupForm.controls['email'].touched || signupForm.controls['email'].dirty) && (signupForm.controls['email'].hasError('required')) ||  (signupForm.controls['email'].hasError('email'))}">
-                </div> -->
                 <div class="show-error" *ngIf="errorMessage">
                     <p style="color: red; margin: 0 0 -15px 0 !important;" class="text-center">{{ errorMessage }}</p>
                   </div>                           
@@ -113,7 +108,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body d-flex justify-content-center">
-          <form id="form1" [formGroup]="vehicleUpdateForm" style="width: 60%;" (ngSubmit)="submitVehicle()"> 
+          <form id="form1" [formGroup]="vehicleUpdateForm" style="width: 70%;" (ngSubmit)="submitVehicle()"> 
               <div class="form-group">
                   <label for="vehicle_type">Vehicle Name</label><br>
                   <input class="form-control" type="text" id="vehicle_type" formControlName="vehicle_type"
